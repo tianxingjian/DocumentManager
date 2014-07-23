@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<!--解决乱码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<global-results>
+			<result name="globallogin" type="redirect">/login.jsp</result>
+		</global-results>
+
+		<action name="upload" class="com.sanbao.it.action.UploadAction"
+			method="execute">
+			<param name="savePath">/Document</param>
+			<result name="success" type="chain">
+				<param name="actionName">showdocuments</param>
+			</result>
+			<result name="input">filelist.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">application/zip,application/excel,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.ms-powerpoint,text/plain,application/octet-stream</param>
+				<!-- 文件大小, 以字节为单位 -->
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="showdocuments" class="com.sanbao.it.action.ShowAction">
+			<result name="success">filelist.jsp</result>
+		</action>
+		
+		<action name="FileDownload" class="com.sanbao.it.action.DownloadAction">  
+           <result name="success" type="stream">  
+               <param name="contentType">text/plain</param>  
+               <param name="contentDisposition">attachment;fileName="${filename}"</param>  
+               <param name="inputName">downloadFile</param>  
+               <param name="bufferSize">1024</param>  
+           </result>  
+       </action> 
+
+	</package>
+
+
+
+	<constant name="struts.multipart.saveDir" value="d:/tmp"></constant>
+	<constant name="struts.multipart.maxSize" value="4294967296"></constant>
+	<constant name="struts.multipart.parser" value="jakarta"></constant>
+</struts>

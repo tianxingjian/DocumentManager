@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- name类名，table表名 -->
+	<class name="com.sanbao.it.ORM.Document" table="Document">
+		<!-- id标签表示主键 -->
+		<id name="id" column="id" type="int">
+			<!-- -->
+			<generator class="increment"></generator>
+		</id>
+		<!-- 下面是字段映射 name属性,column是字段 type数据库类型 -->
+		<property name="documentId" column="documentId" type="string"></property>
+		<property name="author" column="author" type="string"></property>
+		<property name="filename" column="filename" type="string"></property>
+		<property name="filetype" column="filetype" type="string"></property>
+		<property name="category" column="category" type="string"></property>
+		<property name="uploadtime" column="uploadtime" type="date"></property>
+		<property name="downloadcount" column="downloadcount" type="int"></property>
+	</class>
+</hibernate-mapping>
