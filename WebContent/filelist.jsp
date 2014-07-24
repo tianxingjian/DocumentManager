@@ -7,8 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 
 <title>文档下载专区</title>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script>
-	
+	function check() {
+		if (document.getElementById('file').value == '') {
+			alert('选择一个上传文件！');
+			return false;
+		}
+	}
 </script>
 <style type="text/css">
 body {
@@ -23,9 +29,10 @@ body {
 <body>
 	<div>
 		<form action="${pageContext.request.contextPath}/upload"
-			enctype="multipart/form-data" method="post">
-			文件:<input type="file" name="file"> <input type="submit"
-				value="上传" />
+			onSubmit="return check();" enctype="multipart/form-data"
+			method="post">
+			文件:<input type="file" name="file" id="file"> <input type="submit"
+				value="上传" name="fileUpload" />
 		</form>
 	</div>
 	<br />
@@ -45,7 +52,7 @@ body {
 				<s:else>style="background-color:#eff7f8"</s:else>>
 				<td><s:property value="#doc.filename" /></td>
 				<td><s:property value="#doc.filetype" /></td>
-				<td><s:property value="#doc.uploadtime" /></td>
+				<td>20<s:property value="#doc.uploadtime" /></td>
 				<td><s:property value="#doc.author" /></td>
 				<td><s:property value="#doc.downloadcount" /></td>
 				<td align=center><a
@@ -54,7 +61,7 @@ body {
 			</tr>
 		</s:iterator>
 	</table>
-	
-	
+
+
 </body>
 </html>
