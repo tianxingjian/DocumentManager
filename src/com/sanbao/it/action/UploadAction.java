@@ -15,7 +15,7 @@ import com.sanbao.it.service.impl.UploadServiceImpl;
 public class UploadAction extends ActionSupport {
 
 	/**
-	 * 
+	 * @author Angelo
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -106,6 +106,7 @@ public class UploadAction extends ActionSupport {
 		case "application/vnd.ms-powerpoint":
 			return "ppt";
 		case "text/plain":
+			return "txt";
 		case "application/octet-stream":
 			return "txt";
 		default:

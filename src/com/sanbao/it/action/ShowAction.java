@@ -10,7 +10,7 @@ import com.sanbao.it.service.impl.ShowServiceImpl;
 public class ShowAction extends ActionSupport {
 
 	/**
-	 * 
+	 * @author Angelo
 	 */
 	private static final long serialVersionUID = 1L;
 

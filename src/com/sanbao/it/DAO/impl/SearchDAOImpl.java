@@ -21,4 +21,15 @@ public class SearchDAOImpl implements SearchDAO {
 		return list.get(0);
 	}
 
+	@Override
+	public List<Document> searchByName(String filename) {
+		org.hibernate.Session session = HibernateUtil.openSession();
+		String hql = "from Document where filename like :name order by filename";
+		Query query = session.createQuery(hql);
+		query.setString("name", "%"+filename +"%");
+		@SuppressWarnings("unchecked")
+		List<Document> list = query.list();
+		return list;
+	}
+
 }

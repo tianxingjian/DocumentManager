@@ -35,6 +35,10 @@
 			<result name="success">filelist.jsp</result>
 		</action>
 		
+		<action name="search" class="com.sanbao.it.action.SearchAction">
+			<result name="success">filelist.jsp</result>
+		</action>
+		
 		<action name="FileDownload" class="com.sanbao.it.action.DownloadAction">  
            <result name="success" type="stream">  
                <param name="contentType">text/plain</param>  

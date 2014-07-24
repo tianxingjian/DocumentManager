@@ -31,12 +31,18 @@ body {
 		<form action="${pageContext.request.contextPath}/upload"
 			onSubmit="return check();" enctype="multipart/form-data"
 			method="post">
-			文件:<input type="file" name="file" id="file"> <input type="submit"
-				value="上传" name="fileUpload" />
+			文件:<input type="file" name="file" id="file"> <input
+				type="submit" value="上传" name="fileUpload" />
 		</form>
 	</div>
 	<br />
 	<s:fielderror />
+	<div>
+		<form action="${pageContext.request.contextPath}/search">
+			文件名：<input type="text" name="docname" id="docname"> <input
+				type="submit" value="查询">
+		</form>
+	</div>
 	<table align="center">
 		<tr
 			style="background-color: #A7A5B1; font-family: 楷体; font-size: 25px;">

@@ -14,7 +14,7 @@ import com.sanbao.it.service.impl.UpdateServiceImpl;
 public class DownloadAction extends ActionSupport {
 
 	/**
-	 * 
+	 * @author Angelo
 	 */
 	private static final long serialVersionUID = 1L;
 
