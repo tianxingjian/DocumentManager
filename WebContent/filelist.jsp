@@ -27,6 +27,8 @@ body {
 </style>
 </head>
 <body>
+	欢迎你：
+	<s:property value="#session.user.username" />
 	<div>
 		<form action="${pageContext.request.contextPath}/upload"
 			onSubmit="return check();" enctype="multipart/form-data"

@@ -10,9 +10,20 @@
 
 	<package name="default" namespace="/" extends="struts-default">
 
+		<interceptors>
+			<interceptor name="isLogin"
+				class="com.sanbao.it.interceptor.IsLoginInterceptor" />
+			<interceptor-stack name="myDefault">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="isLogin" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefault" />
+
 		<global-results>
 			<result name="globallogin" type="redirect">/login.jsp</result>
 		</global-results>
+
 
 		<action name="upload" class="com.sanbao.it.action.UploadAction"
 			method="execute">
@@ -34,22 +45,33 @@
 		<action name="showdocuments" class="com.sanbao.it.action.ShowAction">
 			<result name="success">filelist.jsp</result>
 		</action>
-		
+
+
+
 		<action name="search" class="com.sanbao.it.action.SearchAction">
 			<result name="success">filelist.jsp</result>
 		</action>
-		
-		<action name="FileDownload" class="com.sanbao.it.action.DownloadAction">  
-           <result name="success" type="stream">  
-               <param name="contentType">text/plain</param>  
-               <param name="contentDisposition">attachment;fileName="${filename}"</param>  
-               <param name="inputName">downloadFile</param>  
-               <param name="bufferSize">1024</param>  
-           </result>  
-       </action> 
+
+		<action name="FileDownload" class="com.sanbao.it.action.DownloadAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="contentDisposition">attachment;fileName="${filename}"</param>
+				<param name="inputName">downloadFile</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 
 	</package>
 
+	<package name="nologin" namespace="/" extends="struts-default">
+		<action name="login" class="com.sanbao.it.action.LoginAction">
+			<result name="success" type="chain">
+				<param name="actionName">showdocuments</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="error">login.jsp</result>
+		</action>
+	</package>
 
 
 	<constant name="struts.multipart.saveDir" value="d:/tmp"></constant>
