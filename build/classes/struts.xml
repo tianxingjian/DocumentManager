@@ -61,6 +61,13 @@
 			</result>
 		</action>
 
+		<action name="DeleteDoc" class="com.sanbao.it.action.DeleteAction">
+			<param name="savePath">/Document</param>
+			<result name="success" type="chain">
+				<param name="actionName">showdocuments</param>
+			</result>
+		</action>
+
 	</package>
 
 	<package name="nologin" namespace="/" extends="struts-default">

@@ -15,6 +15,15 @@
 			return false;
 		}
 	}
+
+	function p_del() {
+		var msg = "确定要删除吗？\n\n请确认！";
+		if (confirm(msg) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 </script>
 <style type="text/css">
 body {
@@ -53,6 +62,7 @@ body {
 			<th>上传时间</th>
 			<th>上传者</th>
 			<th>下载次数</th>
+			<th>删除</th>
 			<th>下载</th>
 		</tr>
 		<s:iterator value="documents" id="doc" status="st">
@@ -64,8 +74,12 @@ body {
 				<td><s:property value="#doc.author" /></td>
 				<td><s:property value="#doc.downloadcount" /></td>
 				<td align=center><a
+					href="DeleteDoc?documentId=${doc.documentId}"
+					onclick="javascript:return p_del()"><img src="img/del.png"
+						style="width: 30px; height: 30px;" /></a></td>
+				<td align=center><a
 					href="FileDownload?documentId=${doc.documentId}"><img
-						src="img/54.png" style="width: 40px; height: 40px;" /></a></td>
+						src="img/54.png" style="width: 30px; height: 30px;" /></a></td>
 			</tr>
 		</s:iterator>
 	</table>

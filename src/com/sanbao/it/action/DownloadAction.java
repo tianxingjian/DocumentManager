@@ -43,7 +43,7 @@ public class DownloadAction extends ActionSupport {
 		Document doc = search.searchById(documentId);
 		filename = doc.getFilename();
 		InputStream in = ServletActionContext.getServletContext()
-				.getResourceAsStream("/Document/" + filename);
+				.getResourceAsStream("/Document/" + documentId);
 		//转码，解决下载界面中文不显示问题
 		filename = new String(filename.getBytes("gb2312"), "iso8859-1");
 		//下载次数加一
