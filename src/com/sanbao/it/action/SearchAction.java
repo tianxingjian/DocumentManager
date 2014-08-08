@@ -27,6 +27,7 @@ public class SearchAction extends ActionSupport {
 	
 
 	public String execute() {
+//		System.out.println(docname);
 		SearchFile search = new SearchServiceImpl();
 		setDocuments(search.searchByName(docname));
 		return SUCCESS;

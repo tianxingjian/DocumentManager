@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf8"
-	pageEncoding="utf8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>文档下载专区</title>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
@@ -49,7 +49,7 @@ body {
 	<br />
 	<s:fielderror />
 	<div>
-		<form action="${pageContext.request.contextPath}/search">
+		<form action="${pageContext.request.contextPath}/search" method="post">
 			文件名：<input type="text" name="docname" id="docname"> <input
 				type="submit" value="查询">
 		</form>
