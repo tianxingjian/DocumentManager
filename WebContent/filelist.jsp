@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf8"
-	pageEncoding="utf8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>文档下载专区</title>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
@@ -12,6 +12,15 @@
 	function check() {
 		if (document.getElementById('file').value == '') {
 			alert('选择一个上传文件！');
+			return false;
+		}
+	}
+
+	function p_del() {
+		var msg = "确定要删除吗？\n\n请确认！";
+		if (confirm(msg) == true) {
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -27,6 +36,8 @@ body {
 </style>
 </head>
 <body>
+	欢迎你：
+	<s:property value="#session.user.username" />
 	<div>
 		<form action="${pageContext.request.contextPath}/upload"
 			onSubmit="return check();" enctype="multipart/form-data"
@@ -38,7 +49,7 @@ body {
 	<br />
 	<s:fielderror />
 	<div>
-		<form action="${pageContext.request.contextPath}/search">
+		<form action="${pageContext.request.contextPath}/search" method="post">
 			文件名：<input type="text" name="docname" id="docname"> <input
 				type="submit" value="查询">
 		</form>
@@ -51,6 +62,7 @@ body {
 			<th>上传时间</th>
 			<th>上传者</th>
 			<th>下载次数</th>
+			<th>删除</th>
 			<th>下载</th>
 		</tr>
 		<s:iterator value="documents" id="doc" status="st">
@@ -62,8 +74,12 @@ body {
 				<td><s:property value="#doc.author" /></td>
 				<td><s:property value="#doc.downloadcount" /></td>
 				<td align=center><a
+					href="DeleteDoc?documentId=${doc.documentId}"
+					onclick="javascript:return p_del()"><img src="img/del.png"
+						style="width: 30px; height: 30px;" /></a></td>
+				<td align=center><a
 					href="FileDownload?documentId=${doc.documentId}"><img
-						src="img/54.png" style="width: 40px; height: 40px;" /></a></td>
+						src="img/54.png" style="width: 30px; height: 30px;" /></a></td>
 			</tr>
 		</s:iterator>
 	</table>

@@ -66,15 +66,6 @@ public class UploadAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		String realpath = getSavePath();
-		System.out.println("realpath: " + realpath);
-		if (file != null) {
-			File savefile = new File(new File(realpath), fileFileName);
-			if (!savefile.getParentFile().exists())
-				savefile.getParentFile().mkdirs();
-			FileUtils.copyFile(file, savefile);
-			ActionContext.getContext().put("message", "文件上传成功");
-		}
 		// 在数据库中存储对应的文件信息
 		Document doc = new Document();
 		doc.setAuthor("admin");
@@ -88,6 +79,17 @@ public class UploadAction extends ActionSupport {
 		doc.setUploadtime(new Date(System.currentTimeMillis()));
 		UploadFile upload = new UploadServiceImpl();
 		upload.saveFile(doc);
+		
+		// 在服务器中存储文件
+		String realpath = getSavePath();
+		System.out.println("realpath: " + realpath);
+		if (file != null) {
+			File savefile = new File(new File(realpath), doc.getDocumentId());
+			if (!savefile.getParentFile().exists())
+				savefile.getParentFile().mkdirs();
+			FileUtils.copyFile(file, savefile);
+			ActionContext.getContext().put("message", "文件上传成功");
+		}
 		return "success";
 	}
 
