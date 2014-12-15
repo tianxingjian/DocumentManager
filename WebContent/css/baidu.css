@@ -96,6 +96,7 @@ INPUT {
 	height: 34px;
 	vertical-align: top;
 	float:right;
+	position:absolute;right:0px;
 }
 
 .bg.s_ipt_wr {
