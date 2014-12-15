@@ -1,6 +1,5 @@
 package com.sanbao.it.action;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 
@@ -61,7 +60,7 @@ public class PatchDownAction  extends ActionSupport{
 		String parentDir = rootDir + File.separator + versionNo;
 		
 		FileUtil fileUtil = new FileUtil();
-		if(fileUtil.isFileExists(rootDir, fileName)){
+		if(fileUtil.isFileExists(parentDir, fileName)){
 			setFilename(fileName);
 			msg = "";
 			return SUCCESS;
